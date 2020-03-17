@@ -97,3 +97,12 @@
       owner: pi
       group: pi
       mode: 0644
+
+  #role:demo-PiBrot
+  - name: PiBrot - Install custom makefile
+    template:
+      src: demo-PiBrot/Makefile.j2
+      dest: /home/pi/PiBrot/Makefile
+      owner: pi
+      group: pi
+      mode: 0644
