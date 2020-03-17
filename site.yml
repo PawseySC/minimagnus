@@ -78,7 +78,7 @@
     file:
       src: /home/pi/mpihostsfile
       dest: /home/pi/pi_mpihostsfile
-      state: soft
+      state: link
 
   #role:startsph
   - name: Init - install custom startsph script used to start simulations
