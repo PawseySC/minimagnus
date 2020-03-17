@@ -58,7 +58,7 @@
       group: root
       mode: 0644
 
-# Set up the "head" node
+# Set up the prime/"head" node
 # This will be used for controlling the simulations
 # as well as displaying the results of the simulations.
 - hosts: prime
