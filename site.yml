@@ -34,7 +34,7 @@
         - libglew-dev
         - sshpass
 
-  #role: sshkeys
+  #role:sshkeys
   - name: SSH - Add public key to authorized keys
     authorized_key:
       user: pi
@@ -49,10 +49,10 @@
       group: pi
       mode: 0600
 
-  #role: Hosts
+  #role:hosts
   - name: Setup hosts file to allow short names
     template:
-      src: hosts.j2
+      src: hosts/hosts.j2
       dest: /etc/hosts
       owner: root
       group: root
@@ -66,6 +66,7 @@
   become: yes
 
   tasks:
+  #role:mpihosts
   - name: Create mpihosts file
     template:
       src: mpi/mpihostsfile.j2
