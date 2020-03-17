@@ -72,3 +72,9 @@
       dest: /home/pi/mpihostsfile
       owner: pi
       group: pi
+
+  - name: Create pi_mpihostsfile as a symlink
+    file:
+      src: /home/pi/mpihostsfile
+      dest: /home/pi/pi_mpihostsfile
+      state: soft
