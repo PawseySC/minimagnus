@@ -1,0 +1,7 @@
+[management]
+teastack.local
+
+[compute]
+pi1.local
+pi2.local
+pi3.local

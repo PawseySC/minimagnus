@@ -1,0 +1,16 @@
+---
+# file: site.yml
+- hosts: compute
+  remote_user: 'pi'
+  become: yes
+
+  tasks:
+  #role:base
+  - name: Install essential utils
+    apt:
+      name:
+        - htop
+        - nano
+        - git
+        - tmux
+
