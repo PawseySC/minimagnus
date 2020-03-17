@@ -15,6 +15,15 @@
         - git
         - tmux
 
+  #role:pisettings
+  - name: Pi - install our config.txt
+    template:
+      src: config.txt.j2
+      dest: /boot/config.txt
+      owner: root
+      group: root
+      mode: 0755
+
   #role:tinysetup
   - name: Install utils from TinySetup
     apt:
