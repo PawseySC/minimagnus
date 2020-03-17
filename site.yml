@@ -14,3 +14,13 @@
         - git
         - tmux
 
+  #role:tinysetup
+  - name: Install utils from TinySetup
+    apt:
+      name:
+        - vim
+        - mpich
+        - xboxdrv
+        - libglew-dev
+        - sshpass
+
