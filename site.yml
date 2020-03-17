@@ -40,6 +40,15 @@
       group: pi
       mode: 0600
 
+  #role: Hosts
+  - name: Setup hosts file to allow short names
+    template:
+      src: hosts.j2
+      dest: /etc/hosts
+      owner: root
+      group: root
+      mode: 0644
+
 # Set up the "head" node
 # This will be used for controlling the simulations
 # as well as displaying the results of the simulations.
