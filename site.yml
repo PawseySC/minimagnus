@@ -1,5 +1,6 @@
 ---
 # file: site.yml
+# Set up all the Raspberry Pi Compute Nodes
 - hosts: compute
   remote_user: 'pi'
   become: yes
@@ -24,3 +25,32 @@
         - libglew-dev
         - sshpass
 
+  #role: sshkeys
+  - name: SSH - Add public key to authorized keys
+    authorized_key:
+      user: pi
+      state: present
+      key: "{{ lookup('file', 'ssh/pi.pub') }}"
+
+  - name: SSH - Add private key to all hosts
+    copy:
+      src: 'ssh/pi.key'
+      dest: '/home/pi/.ssh/id_rsa'
+      owner: pi
+      group: pi
+      mode: 0600
+
+# Set up the "head" node
+# This will be used for controlling the simulations
+# as well as displaying the results of the simulations.
+- hosts: prime
+  remote_user: 'pi'
+  become: yes
+
+  tasks:
+  - name: Create mpihosts file
+    template:
+      src: mpi/mpihostsfile.j2
+      dest: /home/pi/mpihostsfile
+      owner: pi
+      group: pi

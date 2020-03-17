@@ -1,6 +1,9 @@
 [management]
 teastack.local
 
+[prime]
+pi1.local
+
 [compute]
 pi1.local
 pi2.local
