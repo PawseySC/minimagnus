@@ -28,7 +28,7 @@ clean:
 	cd blink1 && make clean
 
 run: copy
-	cd $(HOME) ; mpirun -f ~/pi_mpihostsfile -n 3 ~/sph.out ; cd $(HOME)/SPH
+	cd $(HOME) ; mpirun --hostfile ~/pi_mpihostsfile -n 3 ~/sph.out ; cd $(HOME)/SPH
 
 copy:
 	scp ./bin/sph.out pi1:~/

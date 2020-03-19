@@ -29,7 +29,7 @@
     apt:
       name:
         - vim
-        - mpich
+        - openmpi-bin
         - xboxdrv
         - libglew-dev
         - sshpass
