@@ -66,6 +66,24 @@
       group: root
       mode: 0644
 
+  #role:demo-SPH
+  - name: SPH - Install custom makefile
+    template:
+      src: demo-SPH/makefile.j2
+      dest: /home/pi/SPH/makefile
+      owner: pi
+      group: pi
+      mode: 0644
+
+  #role:demo-PiBrot
+  - name: PiBrot - Install custom makefile
+    template:
+      src: demo-PiBrot/Makefile.j2
+      dest: /home/pi/PiBrot/Makefile
+      owner: pi
+      group: pi
+      mode: 0644
+
 # Set up the prime/"head" node
 # This will be used for controlling the simulations
 # as well as displaying the results of the simulations.
@@ -96,21 +114,3 @@
       owner: pi
       group: pi
       mode: 0755
-
-  #role:demo-SPH
-  - name: SPH - Install custom makefile
-    template:
-      src: demo-SPH/makefile.j2
-      dest: /home/pi/SPH/makefile
-      owner: pi
-      group: pi
-      mode: 0644
-
-  #role:demo-PiBrot
-  - name: PiBrot - Install custom makefile
-    template:
-      src: demo-PiBrot/Makefile.j2
-      dest: /home/pi/PiBrot/Makefile
-      owner: pi
-      group: pi
-      mode: 0644
