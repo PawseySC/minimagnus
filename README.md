@@ -8,7 +8,7 @@ Usage:
 `git clone https://github.com/TinyTitan/PiBrot.git`
 
 * On prime node, git clone SPH
-`git clone https://github.com/TinyTitan/SPH.git
+`git clone https://github.com/TinyTitan/SPH.git`
 
 * clone this repo
 
