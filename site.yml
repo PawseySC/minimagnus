@@ -34,6 +34,14 @@
         - libglew-dev
         - sshpass
 
+  #role:GLstuff
+  # https://www.raspberrypi.org/forums/viewtopic.php?t=191857
+  - name: Install libGLESv2 stuff
+    apt:
+      name:
+        - libgles2-mesa
+        - libsdl2-dev
+
   #role:sshkeys
   - name: SSH - Add public key to authorized keys
     authorized_key:
