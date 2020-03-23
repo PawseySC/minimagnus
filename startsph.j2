@@ -14,7 +14,7 @@ start_sph() {
 		touch /home/pi/running
 		echo
 		echo "Starting SPH"
-		cd /home/pi && su pi -c 'mpirun --hostfile /home/pi/pi_mpihostsfile -n 13 /home/pi/sph.out'
+		cd /home/pi && su pi -c 'mpirun --hostfile /home/pi/pi_mpihostsfile -n 12 /home/pi/sph.out'
 		EXITCODE=$?
 		rm -f /home/pi/running
 		#clear
@@ -33,7 +33,7 @@ start_pibrot() {
 		touch /home/pi/running
 		echo
 		echo "Starting PiBrot"
-		cd /home/pi && su pi -c 'mpirun --hostfile /home/pi/pi_mpihostsfile -n 13 /home/pi/pibrot'
+		cd /home/pi && su pi -c 'mpirun --hostfile /home/pi/pi_mpihostsfile -n 12 /home/pi/pibrot'
 		EXITCODE=$?
 		rm -f /home/pi/running
 		#clear
