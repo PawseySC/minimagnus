@@ -39,11 +39,11 @@
     authorized_key:
       user: pi
       state: present
-      key: "{{ lookup('file', 'ssh/pi.pub') }}"
+      key: "{{ lookup('file', 'secrets/ssh/pi.pub') }}"
 
   - name: SSH - Add private key to all hosts
     copy:
-      src: 'ssh/pi.key'
+      src: 'secrets/ssh/pi.key'
       dest: '/home/pi/.ssh/id_rsa'
       owner: pi
       group: pi
