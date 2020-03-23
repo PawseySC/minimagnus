@@ -96,7 +96,7 @@
       state: link
 
   #role:startsph
-  - name: Init - install custom startsph script used to start simulations
+  - name: Init - install custom startsph kiosk script used to start simulations
     template:
       src: startsph.j2
       dest: /home/pi/startsph
