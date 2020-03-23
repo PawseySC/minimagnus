@@ -58,23 +58,20 @@
       group: root
       mode: 0644
 
-  #role:demo-SPH
-  - name: SPH - Install custom makefile
-    template:
-      src: demo-SPH/makefile.j2
-      dest: /home/pi/SPH/makefile
-      owner: pi
-      group: pi
-      mode: 0644
+  #role:tinytitan-gitrepos
+  - name: Use git to checkout SPH demo
+    git:
+      version: "master"
+      repo: "https://github.com/Zorlin/SPH.git"
+      dest: "/home/pi/SPH"
+    become_user: pi
 
-  #role:demo-PiBrot
-  - name: PiBrot - Install custom makefile
-    template:
-      src: demo-PiBrot/Makefile.j2
-      dest: /home/pi/PiBrot/Makefile
-      owner: pi
-      group: pi
-      mode: 0644
+  - name: Use git to checkout PiBrot demo
+    git:
+      version: "master"
+      repo: "https://github.com/Zorlin/PiBrot.git"
+      dest: "/home/pi/PiBrot"
+    become_user: pi
 
 # Set up the prime/"head" node
 # This will be used for controlling the simulations

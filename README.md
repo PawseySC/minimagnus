@@ -14,12 +14,10 @@
 
 `ssh-copy-id pi1.local`
 
-## Bootstrap a new node:
-* ansible-playbook bootstrap.yml -i inventory --limit=pi1.local
+* customise to your needs (edit hosts file, inventory etc)
 
-Setup all bootstrapped hosts
-* ansible-playbook site.yml -i inventory
-(note that --check and --diff are usually helpful)
+* use Ansible to build the cluster
 
-TODO:
-* testing
+`ansible-playbook site.yml -i inventory`
+
+(Note that --check and --diff are usually helpful)
