@@ -21,3 +21,8 @@
 `ansible-playbook site.yml -i inventory`
 
 (Note that --check and --diff are usually helpful)
+
+## TODO
+* More documentation
+
+* Rename startsph to startkiosk
