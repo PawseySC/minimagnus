@@ -121,3 +121,37 @@
       owner: root
       group: root
       mode: 0755
+
+  #role:dualshock4-experimental
+  - name: Apt - Ensure python3 development libraries are installed
+    apt:
+      name: python3-dev
+
+  - name: Apt - Ensure python3-pip is installed
+    apt:
+      name: python3-pip
+
+    # You may want to read the "Permissions" section of https://github.com/chrippa/ds4drv
+    # to better understand what's going on here.
+    # Credit for the rules file goes to user "chrippa" on GitHub.
+  - name: Bluetooth and udev - ensure user access to ds4 controller
+    copy:
+      src: 'udev/50-ds4drv.rules'
+      dest: '/etc/udev/rules.d/50-ds4drv.rules'
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Pip - Install ds4drv (DualShock 4 Userspace Driver)
+    pip:
+      name: ds4drv
+      executable: pip3
+      state: latest
+
+  - name: ds4 - Create a configuration file for ds4drv
+    template:
+      src: 'dualshock/ds4drv.conf'
+      dest: '/home/pi/.config/ds4drv.conf'
+      owner: pi
+      group: pi
+      mode: 0644
