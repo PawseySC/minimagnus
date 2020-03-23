@@ -43,7 +43,7 @@
 
   - name: SSH - Add private key to all hosts
     copy:
-      src: 'secrets/ssh/pi.key'
+      src: 'secrets/ssh/pi'
       dest: '/home/pi/.ssh/id_rsa'
       owner: pi
       group: pi
