@@ -103,3 +103,12 @@
       owner: pi
       group: pi
       mode: 0755
+
+  #role:killdemos
+  - name: Tools - install a basic script that halts the simulations
+    template:
+      src: killdemos.sh.j2
+      dest: /home/pi/killdemos.sh
+      owner: pi
+      group: pi
+      mode: 0755
