@@ -112,3 +112,12 @@
       owner: pi
       group: pi
       mode: 0755
+
+  #role:autostart
+  - name: Init - Run needed commands for kiosk every boot
+    template:
+      src: rc.local.j2
+      dest: /etc/rc.local
+      owner: root
+      group: root
+      mode: 0755
