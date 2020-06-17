@@ -12,7 +12,7 @@
 
 * copy your public key to ~pi on each node
 
-`ssh-copy-id pi1.local`
+`ssh-copy-id pi@pi1.local`
 
 * customise to your needs (edit hosts file, inventory etc)
 
