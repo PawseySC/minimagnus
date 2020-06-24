@@ -1,97 +1,60 @@
 ## Getting started:
+* Follow the MiniMagnus Build Guide to prepare the nodes
 
-* clone this repo
+* Clone this repository to somewhere handy. We use a "management" laptop.
 
-* create a secrets folder
+* Create a keypair for controlling the nodes
+`ssh-keygen -t rsa -b 4096 -C "minimgmt"`
 
+* Copy the newly generated public key to each node
+```
+ssh-copy-id pi@pi1.local
+ssh-copy-id pi@pi2.local
+ssh-copy-id pi@pi3.local
+# rinse and repeat for the rest of your nodes
+```
+
+* Enter the repository directory
+`cd minimagnus`
+
+* Create a secrets folder
 `mkdir -p ../minimagnus-secrets/ssh`
 
-* generate SSH keys into that secrets folder
-
+* Generate SSH keys into that secrets folder
 `ssh-keygen -t rsa -b 4096 -C "minimagnus" -f ./secrets/ssh/pi`
 
-* copy your public key to ~pi on each node
+* Edit the inventory file so it lists all of your nodes by name under the [compute] section.
+`nano inventory`
 
-`ssh-copy-id pi@pi1.local`
+* Edit the MPI hostsfile so it lists all of your nodes by IP address.
+`nano mpi/mpihostsfile.j2`
 
-* customise to your needs (edit hosts file, inventory etc)
+* Edit the system hostsfile so it lists all your nodes and corresponding IP addresses.
+`nano hosts/hosts.j2`
 
-* use Ansible to build the cluster
-
+* Perform an Ansible run to build the cluster
 `ansible-playbook site.yml -i inventory`
 
-(Note that --check and --diff are usually helpful)
+## Configuring a controller
+MiniMagnus is based on the TinyTitan project, which originally used an "Xbox 360 Wireless Controller for Windows" kit. 
 
-## Connecting a controller
-Currently the recommended controller is the Xbox 360 Wireless Controller paired with an official
-"Xbox 360 Controller for Windows" USB dongle, which is usually sold as a kit. Unfortunately these
-are no longer being made and they are getting very hard and expensive to find.
+Unfortunately, it's become very hard to find those kits, and there are plenty of non-genuine kits floating around.
 
-Any controller that you can map to keyboard keys + mouse control could be made to work.
+If you have a genuine kit and want to use it, edit rc.local.j2 and enable the Xbox 360 controller block.
 
-Check out SPH/controller_1.cnf to see how the Xbox controller works.
+The default controller block uses a Mayflash MAGIC-NS adapter running in Xbox (xinput) mode, paired with an appropriate gamepad (we recommend the Sony PlayStation 4 Dualshock 4).
 
-## Getting the SPH demo working
-The Ansible run will have placed most of the resources needed for the SPH demo in the appropriate places.
+If you switch controller types, you'll need to re-run the Ansible playbook.
 
-You will need to use the included makefiles to build the SPH demo and push it to the compute nodes.
-
-It's simpler than it sounds.
-
-* On your prime node, change to the /home/pi/SPH directory
-
-`cd /home/pi/SPH`
-
-* Run `make` to compile the demo
-
-`make`
-
-* Now run `make run` to push it out and try it.
-
-`make run`
-
-Check that everything seems to work. To exit the demo, hit the "Back" button,
-then move the "leaf" cursor over the Terminal image and press the "A" button.
-
-Now that the SPH demo has been built and pushed, it can be run by the Kiosk script later.
-
-## Getting the PiBrot (Mandelbrot) demo working
-As with the SPH demo, the Ansible run will have already placed most resources needed for PiBrot.
-
-You will need to use the included makefiles to build the PiBrot demo and push it to the compute nodes.
-
-* On your prime node, change to the /home/pi/PiBrot directory
-
-`cd /home/pi/PiBrot`
-
-* Run `make` to compile the demo
-
-`make`
-
-* Run `make run` to push it out and try it.
-
-`make run`
-
-To start the demo, use the left thumbstick on your controller to move the "leaf" cursor over the
-Start button, then press the A button. To exit the demo, hit the "Back" button,
-then move the cursor over the Terminal image and press the "A" button.
-
-Now that the PiBrot demo has been built and pushed, it can be run by the Kiosk script later.
-
-## Putting it all together - the Kiosk script
-We have included a "kiosk" script which currently lives at /home/pi/startsph. It's a simple bash
-script that uses exit codes to switch between the two included TinyTitan demos.
-
-Also included is a custom rc.local file which sets up keymapping from the Xbox 360 Controller's
-buttons and controls to the appropriate keyboard and mouse inputs. If you press the "Guide" button
-(the Xbox button in the middle of the controller), the Kiosk script is automatically started.
-
-By default, the Kiosk script will boot into the SPH demo, but you can use the menu triggered by
-the "Back" button to switch between demos. Just move the cursor as before over what you want, then hit A.
-
-Selecting the "Terminal" demo will simply exit the Kiosk script and leave you on the Raspbian desktop.
+Once you've picked your controller type, return to the Build Guide.
 
 ## TODO
-* More documentation
-
+* Improve documentation
 * Rename startsph to startkiosk
+
+## Neat tricks
+To shut down the whole cluster:
+`ansible compute -m shell -a "shutdown -h now" -i inventory --become`
+
+To kill a simulation:
+`pi@pi1:~ $ ~/killdemos.sh`
