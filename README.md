@@ -1,5 +1,5 @@
 ## Getting started:
-* Follow the MiniMagnus Build Guide to prepare the nodes
+* Follow the [MiniMagnus Build Guide](https://github.com/PawseySC/minimagnus-build-guide) to prepare the nodes
 
 * Clone this repository to somewhere handy. We use a "management" laptop.
 
